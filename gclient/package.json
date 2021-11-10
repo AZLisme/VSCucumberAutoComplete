@@ -1,7 +1,7 @@
 {
     "name": "cucumberautocomplete",
-    "version": "2.15.1",
-    "publisher": "alexkrechik",
+    "version": "2.15.2",
+    "publisher": "xuanzeng",
     "engines": {
         "vscode": "^1.18.0"
     },
