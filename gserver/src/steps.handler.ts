@@ -190,7 +190,7 @@ export default class StepsHandler {
         if (!step) return '';
         this.settings.cucumberautocomplete.customParameters.forEach((p: CustomParameter) => {
             const { parameter, value } = p;
-            step = step.split(parameter).join(value);
+            step = step.split(new RegExp(parameter)).join(value);
         });
         return step;
     }
