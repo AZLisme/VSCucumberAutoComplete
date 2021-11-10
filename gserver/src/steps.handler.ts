@@ -177,6 +177,7 @@ export default class StepsHandler {
             }, line);
             const pureMatch = pureLine.match(this.getGherkinRegEx());
             const quotesMatch = quotesLine.match(this.getGherkinRegEx());
+
             if (quotesMatch && quotesMatch[4] && this.getStepByText(quotesMatch[4])) {
                 return quotesMatch;
             } else {
@@ -184,6 +185,10 @@ export default class StepsHandler {
             }
         }
         return line.match(this.getGherkinRegEx());
+    }
+
+    handleDynamicParameters(quote: string): string {
+        return quote.replace(/<(\w+)(\..?)?:.+>/g, "<$1>")
     }
 
     handleCustomParameters(step: string): string {
@@ -488,8 +493,9 @@ export default class StepsHandler {
     }
 
     getStepByText(text: string, gherkin?: GherkinType): Step {
+        const text1 = this.handleDynamicParameters(text)
         return this.elements
-            .find(s => (gherkin !== undefined ? s.gherkin === gherkin : true) && s.reg.test(text));
+            .find(s => (gherkin !== undefined ? s.gherkin === gherkin : true) && s.reg.test(text1));
     }
 
     validate(line: string, lineNum: number, text: string): Diagnostic | null {
