@@ -188,7 +188,7 @@ export default class StepsHandler {
     }
 
     handleDynamicParameters(quote: string): string {
-        return quote.replace(/<(\w+)(\..?)?:.+>/g, "<$1>")
+        return quote.replace(/<(\w+)(\..?)?:.*?>/g, "<$1>")
     }
 
     handleCustomParameters(step: string): string {
